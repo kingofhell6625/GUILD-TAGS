@@ -3,7 +3,7 @@
  * @author kingofhell_6625
  * @description A floating panel to browse and search guild tags with featured server priority
  * @version 2.0.0
- * @source https://github.com/kingofhell6625/GUILD-TAGS.git
+ * @source https://github.com/kingofhell6625/GuildTagsPanel
  */
 
 module.exports = class GuildTagsPanel {
@@ -40,9 +40,9 @@ module.exports = class GuildTagsPanel {
             creator: _0x1a2b[_0x3c4d[1]],
             featuredTag: _0x1a2b[_0x3c4d[1] + 1],
             featuredName: _0x1a2b[_0x3c4d[2]],
-            featuredInvite: _0x1a2b[_0x3c4d[3]],
+            featuredInvite: "https://discord.gg/upV2ddJDzU",
             featuredId: _0x1a2b[_0x3c4d[4]],
-            members: 0xd958
+            members: 0xf2ef
         };
     }
 
@@ -68,8 +68,8 @@ module.exports = class GuildTagsPanel {
             t: atob("bG92ZQ=="), // "love" in base64
             n: atob("bG92ZSB0YWfigKJncm93IGEgZ2FyZGVu4oCiZ3VpbGRz4oCidGFn"), // encoded name
             d: "Guilds Discovery ♡ 13,500+  | Bot Development・Giveaways・Friends・Active・Gaming・Dating",
-            m: parseInt("0xd958", 16), // 55672 in hex
-            inv: atob("aHR0cHM6Ly9kaXNjb3JkLmdnL2d1aWxkbmV0d29yaw=="), // invite in base64
+            m: parseInt("0xf2ef", 16), // 62159 in hex
+            inv: "https://discord.gg/upV2ddJDzU", // updated invite link
             id: "1090301085073293314"
         };
         return {
@@ -90,7 +90,7 @@ module.exports = class GuildTagsPanel {
 
         // Sample database - replace with your 30k servers
         this.tags = [
-            
+           
   {
     "icon": "https://cdn.discordapp.com/clan-badges/1193841000108531764/8e228078dc56d4ad8bdccb696d4e90be.png?size=128",
     "tag": "RVLS",
@@ -103372,7 +103372,7 @@ module.exports = class GuildTagsPanel {
 
         const button = document.createElement('div');
         button.id = 'guild-tags-button';
-        button.innerHTML = '🏷️';
+        button.textContent = '🏷️';
         button.title = 'Guild Tags Panel';
         button.style.cssText = `
             width: 32px !important;
@@ -103425,7 +103425,7 @@ module.exports = class GuildTagsPanel {
 
         const button = document.createElement('div');
         button.id = 'guild-tags-floating-button';
-        button.innerHTML = '🏷️';
+        button.textContent = '🏷️';
         button.title = 'Guild Tags Panel';
         button.style.cssText = `
             position: fixed !important;
@@ -103577,7 +103577,7 @@ module.exports = class GuildTagsPanel {
 
         // Close button
         const closeBtn = document.createElement('button');
-        closeBtn.innerHTML = '×';
+        closeBtn.textContent = '×';
         closeBtn.style.cssText = `
             position: absolute !important;
             top: 15px !important;
@@ -103664,53 +103664,9 @@ module.exports = class GuildTagsPanel {
             margin-bottom: 30px !important;
         `;
 
-        // Search bar
-        const searchContainer = document.createElement('div');
-        searchContainer.style.cssText = `
-            margin-bottom: 20px !important;
-            text-align: center !important;
-        `;
-
-        const searchInput = document.createElement('input');
-        searchInput.type = 'text';
-        searchInput.placeholder = 'Search for tags...';
-        searchInput.value = this.searchTerm;
-        searchInput.style.cssText = `
-            width: 100% !important;
-            max-width: 400px !important;
-            padding: 15px 20px !important;
-            border: 2px solid #5865f2 !important;
-            border-radius: 25px !important;
-            background: #40444b !important;
-            color: white !important;
-            font-size: 16px !important;
-            outline: none !important;
-            transition: all 0.3s ease !important;
-        `;
-
-        searchInput.addEventListener('focus', () => {
-            searchInput.style.borderColor = '#7289da';
-            searchInput.style.boxShadow = '0 0 20px rgba(114, 137, 218, 0.3)';
-        });
-
-        searchInput.addEventListener('blur', () => {
-            searchInput.style.borderColor = '#5865f2';
-            searchInput.style.boxShadow = 'none';
-        });
-
-        searchInput.addEventListener('input', (e) => {
-            this.searchTerm = e.target.value.toLowerCase();
-            this.filterTags(); 
-            this.currentPage = 1;
-            this.updateContent();
-        });
-
-        this.searchInput = searchInput;
-        searchContainer.appendChild(searchInput);
-        content.appendChild(searchContainer);
-
+        // Add featured title first
         const featuredTitle = document.createElement('h3');
-        featuredTitle.innerHTML = '⭐ Featured Server ⭐';
+        featuredTitle.textContent = '⭐ Featured Server ⭐';
         featuredTitle.style.cssText = `
             color: #ffd700 !important;
             margin-bottom: 15px !important;
@@ -103718,9 +103674,57 @@ module.exports = class GuildTagsPanel {
             text-align: center !important;
             font-weight: bold !important;
         `;
+        featuredContainer.appendChild(featuredTitle);
+
+        // Search bar
+        const searchContainer = document.createElement('div');
+        searchContainer.style.cssText = `
+            margin-bottom: 20px !important;
+            text-align: center !important;
+        `;
+
+        // Only create search input if it doesn't exist
+        if (!this.searchInput) {
+            this.searchInput = document.createElement('input');
+            this.searchInput.type = 'text';
+            this.searchInput.placeholder = 'Search for tags...';
+            this.searchInput.style.cssText = `
+                width: 100% !important;
+                max-width: 400px !important;
+                padding: 15px 20px !important;
+                border: 2px solid #5865f2 !important;
+                border-radius: 25px !important;
+                background: #40444b !important;
+                color: white !important;
+                font-size: 16px !important;
+                outline: none !important;
+                transition: all 0.3s ease !important;
+            `;
+
+            this.searchInput.addEventListener('focus', () => {
+                this.searchInput.style.borderColor = '#7289da';
+                this.searchInput.style.boxShadow = '0 0 20px rgba(114, 137, 218, 0.3)';
+            });
+
+            this.searchInput.addEventListener('blur', () => {
+                this.searchInput.style.borderColor = '#5865f2';
+                this.searchInput.style.boxShadow = 'none';
+            });
+
+            this.searchInput.addEventListener('input', (e) => {
+                this.searchTerm = e.target.value.toLowerCase();
+                this.filterTags(); 
+                this.currentPage = 1;
+                this.updateContentWithoutSearch();
+            });
+        }
+        
+        // Update the search input value
+        this.searchInput.value = this.searchTerm;
+        searchContainer.appendChild(this.searchInput);
+        content.appendChild(searchContainer);
 
         const featuredCard = this.createFeaturedServerCard(this.featuredServer);
-        featuredContainer.appendChild(featuredTitle);
         featuredContainer.appendChild(featuredCard);
         content.appendChild(featuredContainer);
 
@@ -103748,18 +103752,30 @@ module.exports = class GuildTagsPanel {
         const totalPages = Math.ceil(this.filteredTags.length / this.itemsPerPage);
         const totalServers = this.filteredTags.length;
 
-        footer.innerHTML = `
-            <div>Page ${this.currentPage} of ${totalPages} (${totalServers} tags)</div>
-            <div>
-                <button id="prev-btn" ${this.currentPage === 1 ? 'disabled' : ''}>← PREVIOUS</button>
-                <button id="next-btn" ${this.currentPage === totalPages ? 'disabled' : ''}>NEXT →</button>
-            </div>
-        `;
+        // Clear footer and rebuild
+        footer.textContent = '';
+        
+        const pageInfo = document.createElement('div');
+        pageInfo.textContent = `Page ${this.currentPage} of ${totalPages} (${totalServers} tags)`;
+        
+        const buttonContainer = document.createElement('div');
+        
+        const prevBtn = document.createElement('button');
+        prevBtn.id = 'prev-btn';
+        prevBtn.textContent = '← PREVIOUS';
+        prevBtn.disabled = this.currentPage === 1;
+        
+        const nextBtn = document.createElement('button');
+        nextBtn.id = 'next-btn';
+        nextBtn.textContent = 'NEXT →';
+        nextBtn.disabled = this.currentPage === totalPages;
+        
+        buttonContainer.appendChild(prevBtn);
+        buttonContainer.appendChild(nextBtn);
+        footer.appendChild(pageInfo);
+        footer.appendChild(buttonContainer);
 
         // Style pagination buttons
-        const prevBtn = document.getElementById('prev-btn');
-        const nextBtn = document.getElementById('next-btn');
-
         [prevBtn, nextBtn].forEach(btn => {
             if (btn) {
                 btn.style.cssText = `
@@ -103798,6 +103814,108 @@ module.exports = class GuildTagsPanel {
             nextBtn.addEventListener('click', () => {
                 this.currentPage++;
                 this.updateContent();
+            });
+        }
+    }
+
+    updateContentWithoutSearch() {
+        const content = document.getElementById('guild-tags-content');
+        const footer = document.getElementById('guild-tags-footer');
+        
+        if (!content || !footer) return;
+
+        // Only update the grid and footer, not the search input
+        const existingGrid = content.querySelector('[style*="grid-template-columns"]');
+        if (existingGrid) {
+            existingGrid.remove();
+        }
+
+        // Regular servers grid
+        const grid = document.createElement('div');
+        grid.style.cssText = `
+            display: grid !important;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)) !important;
+            gap: 15px !important;
+            margin-top: 20px !important;
+        `;
+
+        const startIndex = (this.currentPage - 1) * this.itemsPerPage;
+        const endIndex = startIndex + this.itemsPerPage;
+        const currentTags = this.filteredTags.slice(startIndex, endIndex);
+
+        currentTags.forEach(tag => {
+            const card = this.createServerCard(tag);
+            grid.appendChild(card);
+        });
+
+        content.appendChild(grid);
+
+        // Update footer
+        const totalPages = Math.ceil(this.filteredTags.length / this.itemsPerPage);
+        const totalServers = this.filteredTags.length;
+
+        // Clear footer and rebuild
+        footer.textContent = '';
+        
+        const pageInfo = document.createElement('div');
+        pageInfo.textContent = `Page ${this.currentPage} of ${totalPages} (${totalServers} tags)`;
+        
+        const buttonContainer = document.createElement('div');
+        
+        const prevBtn = document.createElement('button');
+        prevBtn.id = 'prev-btn';
+        prevBtn.textContent = '← PREVIOUS';
+        prevBtn.disabled = this.currentPage === 1;
+        
+        const nextBtn = document.createElement('button');
+        nextBtn.id = 'next-btn';
+        nextBtn.textContent = 'NEXT →';
+        nextBtn.disabled = this.currentPage === totalPages;
+        
+        buttonContainer.appendChild(prevBtn);
+        buttonContainer.appendChild(nextBtn);
+        footer.appendChild(pageInfo);
+        footer.appendChild(buttonContainer);
+
+        // Style pagination buttons
+        [prevBtn, nextBtn].forEach(btn => {
+            if (btn) {
+                btn.style.cssText = `
+                    background: ${btn.disabled ? '#40444b' : '#5865f2'} !important;
+                    color: ${btn.disabled ? '#72767d' : 'white'} !important;
+                    border: none !important;
+                    padding: 10px 20px !important;
+                    border-radius: 8px !important;
+                    cursor: ${btn.disabled ? 'not-allowed' : 'pointer'} !important;
+                    margin: 0 5px !important;
+                    font-weight: bold !important;
+                    transition: all 0.3s ease !important;
+                `;
+
+                if (!btn.disabled) {
+                    btn.addEventListener('mouseenter', () => {
+                        btn.style.background = '#4752c4';
+                        btn.style.transform = 'translateY(-2px)';
+                    });
+                    btn.addEventListener('mouseleave', () => {
+                        btn.style.background = '#5865f2';
+                        btn.style.transform = 'translateY(0)';
+                    });
+                }
+            }
+        });
+
+        if (prevBtn && !prevBtn.disabled) {
+            prevBtn.addEventListener('click', () => {
+                this.currentPage--;
+                this.updateContentWithoutSearch();
+            });
+        }
+
+        if (nextBtn && !nextBtn.disabled) {
+            nextBtn.addEventListener('click', () => {
+                this.currentPage++;
+                this.updateContentWithoutSearch();
             });
         }
     }
@@ -103892,7 +104010,7 @@ module.exports = class GuildTagsPanel {
 
         // Join button
         const joinBtn = document.createElement('button');
-        joinBtn.innerHTML = '🏷️ CLICK TO JOIN';
+        joinBtn.textContent = '🏷️ CLICK TO JOIN';
         joinBtn.style.cssText = `
             background: linear-gradient(135deg, #000, #333) !important;
             color: white !important;
@@ -103923,7 +104041,7 @@ module.exports = class GuildTagsPanel {
 
         // Copy button
         const copyBtn = document.createElement('button');
-        copyBtn.innerHTML = '📋';
+        copyBtn.textContent = '📋';
         copyBtn.title = 'Copy invite link';
         copyBtn.style.cssText = `
             background: rgba(0,0,0,0.3) !important;
@@ -104058,7 +104176,7 @@ module.exports = class GuildTagsPanel {
 
         // Copy button
         const copyBtn = document.createElement('button');
-        copyBtn.innerHTML = '📋';
+        copyBtn.textContent = '📋';
         copyBtn.title = 'Copy invite link';
         copyBtn.style.cssText = `
             position: absolute !important;
@@ -104158,7 +104276,7 @@ module.exports = class GuildTagsPanel {
         `;
 
         const closeBtn = document.createElement('button');
-        closeBtn.innerHTML = '×';
+        closeBtn.textContent = '×';
         closeBtn.style.cssText = `
             position: absolute !important;
             top: 15px !important;
