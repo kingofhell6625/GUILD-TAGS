@@ -112,7 +112,7 @@ While this is a closed-source plugin, feedback and suggestions are welcome:
 
 - **Discord**: Join the featured server for support
 - **Creator**: kingofhell_6625
-- **Server**: https://discord.gg/upV2ddJDzU
+- **Server**: https://discord.gg/cHzNNHhzfQ
 
 
 **Made with ❤️ by kingofhell_6625**
