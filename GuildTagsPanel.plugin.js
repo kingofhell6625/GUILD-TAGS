@@ -3,7 +3,7 @@
  * @author kingofhell_6625
  * @description A floating panel to browse and search guild tags with featured server priority
  * @version 2.0.0
- * @source https://github.com/kingofhell6625/GuildTagsPanel
+ * @source https://github.com/kingofhell6625/GUILD-TAGS/blob/main/GuildTagsPanel.plugin.js
  */
 
 module.exports = class GuildTagsPanel {
@@ -104406,4 +104406,3 @@ module.exports = class GuildTagsPanel {
         }
     }
 };
-
