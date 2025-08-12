@@ -90,7 +90,7 @@ module.exports = class GuildTagsPanel {
 
         // Sample database - replace with your 30k servers
         this.tags = [
-            
+           
   {
     "icon": "https://cdn.discordapp.com/clan-badges/1193841000108531764/8e228078dc56d4ad8bdccb696d4e90be.png?size=128",
     "tag": "RVLS",
@@ -104322,10 +104322,10 @@ module.exports = class GuildTagsPanel {
         `;
 
         const memberCount = document.createElement('p');
-        memberCount.textContent = `● ${server.members ? server.members.toLocaleString() : 'Unknown'} Members`;
+        memberCount.innerHTML = `<span style="color: #43b581;">●</span> ${server.members ? server.members.toLocaleString() : 'Unknown'} Members`;
         memberCount.style.cssText = `
             margin-bottom: 25px !important;
-            color: #43b581 !important;
+            color: #b9bbbe !important;
             font-size: 16px !important;
         `;
 
