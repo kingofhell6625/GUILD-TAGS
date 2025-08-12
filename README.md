@@ -45,10 +45,9 @@ A powerful Discord plugin that provides a floating panel to browse and search th
 
 ### Searching
 - Use the search bar to find servers by:
-  - Tag name (e.g., "love", "gaming", "anime")
+  - 4 Letters Tag name  (e.g., "love", "hate", "sad")
   - Server name
-  - Invite URL
-  - Server ID
+  
 
 ### Joining Servers
 1. Click "CLICK TO JOIN" on any server card
